@@ -3,7 +3,114 @@
 
 typedef struct {
     char estado;                 // Ex: 'C'
-    char codigo[4];              // Ex: "A01"
+    c#include <stdio.h>
+
+typedef struct {
+    char estado;
+    char codigo[4];
+    char cidade[50];
+    unsigned long int populacao;   // alterado conforme pedido
+    float area;
+    float pib;
+    int pontosTuristicos;
+    float densidade;
+    float pibPerCapita;
+    float superPoder;
+} Carta;
+
+int main() {
+    Carta c1, c2;
+
+    // ===== ENTRADA CARTA 1 =====
+    printf("=== CARTA 1 ===\n");
+    printf("Estado (letra): ");
+    scanf(" %c", &c1.estado);
+
+    printf("Codigo da carta: ");
+    scanf("%s", c1.codigo);
+
+    printf("Nome da cidade: ");
+    scanf(" %[^\n]", c1.cidade);
+
+    printf("Populacao: ");
+    scanf("%lu", &c1.populacao);
+
+    printf("Area (km²): ");
+    scanf("%f", &c1.area);
+
+    printf("PIB: ");
+    scanf("%f", &c1.pib);
+
+    printf("Pontos turisticos: ");
+    scanf("%d", &c1.pontosTuristicos);
+
+    // ===== ENTRADA CARTA 2 =====
+    printf("\n=== CARTA 2 ===\n");
+    printf("Estado (letra): ");
+    scanf(" %c", &c2.estado);
+
+    printf("Codigo da carta: ");
+    scanf("%s", c2.codigo);
+
+    printf("Nome da cidade: ");
+    scanf(" %[^\n]", c2.cidade);
+
+    printf("Populacao: ");
+    scanf("%lu", &c2.populacao);
+
+    printf("Area (km²): ");
+    scanf("%f", &c2.area);
+
+    printf("PIB: ");
+    scanf("%f", &c2.pib);
+
+    printf("Pontos turisticos: ");
+    scanf("%d", &c2.pontosTuristicos);
+
+    // ===== CALCULOS =====
+    c1.densidade = (float)c1.populacao / c1.area;
+    c2.densidade = (float)c2.populacao / c2.area;
+
+    c1.pibPerCapita = c1.pib / (float)c1.populacao;
+    c2.pibPerCapita = c2.pib / (float)c2.populacao;
+
+    c1.superPoder =
+        (float)c1.populacao +
+        c1.area +
+        c1.pib +
+        (float)c1.pontosTuristicos +
+        c1.pibPerCapita +
+        (1.0f / c1.densidade);
+
+    c2.superPoder =
+        (float)c2.populacao +
+        c2.area +
+        c2.pib +
+        (float)c2.pontosTuristicos +
+        c2.pibPerCapita +
+        (1.0f / c2.densidade);
+
+    // ===== COMPARACOES =====
+    int pop = (c1.populacao > c2.populacao);
+    int area = (c1.area > c2.area);
+    int pib = (c1.pib > c2.pib);
+    int pontos = (c1.pontosTuristicos > c2.pontosTuristicos);
+    int densidade = (c1.densidade < c2.densidade);  // menor vence
+    int pibpc = (c1.pibPerCapita > c2.pibPerCapita);
+    int superpoder = (c1.superPoder > c2.superPoder);
+
+    // ===== SAIDA =====
+    printf("\n=== Comparacao de Cartas ===\n");
+    printf("Populacao: Carta %s venceu (%d)\n", pop ? "1" : "2", pop);
+    printf("Area: Carta %s venceu (%d)\n", area ? "1" : "2", area);
+    printf("PIB: Carta %s venceu (%d)\n", pib ? "1" : "2", pib);
+    printf("Pontos Turisticos: Carta %s venceu (%d)\n", pontos ? "1" : "2", pontos);
+    printf("Densidade Populacional: Carta %s venceu (%d)\n", densidade ? "1" : "2", densidade);
+    printf("PIB per Capita: Carta %s venceu (%d)\n", pibpc ? "1" : "2", pibpc);
+    printf("Super Poder: Carta %s venceu (%d)\n", superpoder ? "1" : "2", superpoder);
+
+    return 0;
+}har codigo[4];              // Ex: "A01"
     char cidade[30];             // Ex: "Fortaleza"
     int populacao;               // Ex: 2000000
     float area;                  // Ex: 10000.0
